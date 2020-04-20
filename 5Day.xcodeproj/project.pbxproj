@@ -16,6 +16,7 @@
 		CD46AD102447A6F7007993CF /* WeatherNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46AD0F2447A6F7007993CF /* WeatherNetworkManager.swift */; };
 		CD46AD152447E550007993CF /* NMProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46AD142447E550007993CF /* NMProperties.swift */; };
 		CD46AD172447E70E007993CF /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46AD162447E70E007993CF /* Weather.swift */; };
+		CD46AD1C2448B7FC007993CF /* HomeViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46AD1B2448B7FC007993CF /* HomeViewConstraints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		CD46AD0F2447A6F7007993CF /* WeatherNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkManager.swift; sourceTree = "<group>"; };
 		CD46AD142447E550007993CF /* NMProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMProperties.swift; sourceTree = "<group>"; };
 		CD46AD162447E70E007993CF /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		CD46AD1B2448B7FC007993CF /* HomeViewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewConstraints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,12 +64,12 @@
 		CD46ACF724479F8F007993CF /* 5Day */ = {
 			isa = PBXGroup;
 			children = (
-				CD46AD1824488D90007993CF /* New Group */,
+				CD46AD192448B7D4007993CF /* Extensions */,
+				CD46AD1824488D90007993CF /* Controllers */,
 				CD46AD112447E3C4007993CF /* Model */,
 				CD46AD0C2447A585007993CF /* NetworkManager */,
 				CD46ACFA24479F8F007993CF /* SceneDelegate.swift */,
 				CD46ACF824479F8F007993CF /* AppDelegate.swift */,
-				CD46ACFC24479F8F007993CF /* ViewController.swift */,
 				CD46AD0124479F95007993CF /* Assets.xcassets */,
 				CD46AD0324479F95007993CF /* LaunchScreen.storyboard */,
 				CD46AD0624479F95007993CF /* Info.plist */,
@@ -93,11 +95,28 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		CD46AD1824488D90007993CF /* New Group */ = {
+		CD46AD1824488D90007993CF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CD46ACFC24479F8F007993CF /* ViewController.swift */,
 			);
-			path = "New Group";
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CD46AD192448B7D4007993CF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CD46AD1A2448B7DB007993CF /* Constraints */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CD46AD1A2448B7DB007993CF /* Constraints */ = {
+			isa = PBXGroup;
+			children = (
+				CD46AD1B2448B7FC007993CF /* HomeViewConstraints.swift */,
+			);
+			path = Constraints;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD46AD1C2448B7FC007993CF /* HomeViewConstraints.swift in Sources */,
 				CD46AD0E2447A5E5007993CF /* NMProtocol.swift in Sources */,
 				CD46ACFD24479F8F007993CF /* ViewController.swift in Sources */,
 				CD46ACF924479F8F007993CF /* AppDelegate.swift in Sources */,

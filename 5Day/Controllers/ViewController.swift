@@ -13,23 +13,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     
     let networkManager = WeatherNetworkManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .red
         // Do any additional setup after loading the view.
         var city = "Sacramento"
         networkManager.getWeather(city: city) { (weather) in
             print("temp test", weather.main.temp)
+            
+            
         }
         
-
+        setupView()
+        var test = "Sacramento"
+        loadData(city: test)
 
 }
+   
+    func setupView() {
+        view.addSubview(currentTemperatureLabel)
+        view.addSubview(currentTime)
+        view.addSubview(currentLocation)
+        view.addSubview(tempDescription)
+        view.addSubview(tempSymbol)
+        view.addSubview(maxTemp)
+        view.addSubview(minTemp)
+        setupConstraints()
+        
+    }
+    
     let currentLocation: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "...Location"
+        label.text = "Location"
         label.textAlignment = .left
-        label.textColor = .label
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 38, weight: .heavy)
         return label
@@ -38,7 +56,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let currentTime: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "28 March 2020"
+        label.text = "20 April 2020"
         label.textAlignment = .left
         label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 10, weight: .heavy)
@@ -109,6 +127,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
              
              DispatchQueue.main.async {
                  self.tempDescription.text = weather.weather[0].description
+                self.currentLocation.text = "\(weather.name ?? "") , \(weather.sys.country ?? "")"
 
              }
          }
