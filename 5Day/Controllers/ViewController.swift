@@ -26,8 +26,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         setupView()
-        var test = "Sacramento"
-        loadData(city: test)
+                 
 
 }
    
@@ -40,7 +39,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         view.addSubview(maxTemp)
         view.addSubview(minTemp)
         setupConstraints()
+        setupNavbar()
         
+        
+    }
+    func setupNavbar() {
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .done, target: self, action: #selector(updateLocationButton))]
     }
     
     let currentLocation: UILabel = {
@@ -131,6 +135,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
              }
          }
+    }
+    
+    @objc func updateLocationButton() {
+        let alertController = UIAlertController(title: "Update City", message: "", preferredStyle: .alert)
+         alertController.addTextField { (textField : UITextField!) -> Void in
+             textField.placeholder = "Name of City"
+         }
+         let save = UIAlertAction(title: "Add", style: .default, handler: { alert -> Void in
+             let firstTextField = alertController.textFields![0] as UITextField
+             print("City Name: \(firstTextField.text)")
+            guard let cityName = firstTextField.text else { return }
+            self.loadData(city: cityName) // Calling the loadData function
+         })
+         let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action : UIAlertAction!) -> Void in
+            print("Cancel")
+         })
+
+
+         alertController.addAction(save)
+         alertController.addAction(cancel)
+
+         self.present(alertController, animated: true, completion: nil)
     }
 }
 
