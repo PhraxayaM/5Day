@@ -11,5 +11,5 @@ import Foundation
 protocol NMProtocol {
     func getWeather(city: String, completion: @escaping (WeatherModel) -> ())
 
-
+    func getForecast(city: String, completion: @escaping ([ForecastTemperature]) -> ())
 }

@@ -20,7 +20,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Do any additional setup after loading the view.
         var city = "Sacramento"
         networkManager.getWeather(city: city) { (weather) in
-            print("temp test", weather.main.temp)
+            print("temp test", weather.main.temp, "hey: \(weather)")
             
             
         }
@@ -44,7 +44,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     func setupNavbar() {
-        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .done, target: self, action: #selector(updateLocationButton))]
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .done, target: self, action: #selector(updateLocationButton)),
+        UIBarButtonItem(image: UIImage(systemName: "book"), style: .done, target: self, action: #selector(pushForecastVC))]
     }
     
     let currentLocation: UILabel = {
@@ -124,7 +125,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func loadData(city: String) {
         networkManager.getWeather(city: city) { (weather) in
-             print("Current Temperature")
+            print("Current Temperature", weather.main.temp.kelvinToCelsiusConverter())
              let formatter = DateFormatter()
              formatter.dateFormat = "dd MMM yyyy"
             let stringDate = formatter.string(from: Date(timeIntervalSince1970: TimeInterval(weather.dt)))
@@ -132,10 +133,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
              DispatchQueue.main.async {
                  self.tempDescription.text = weather.weather[0].description
                 self.currentLocation.text = "\(weather.name ?? "") , \(weather.sys.country ?? "")"
+                self.currentTemperatureLabel.text = (String(weather.main.temp.kelvinToCelsiusConverter()) + "°C")
+                self.minTemp.text = ("Min: " + String(weather.main.temp_min.kelvinToCelsiusConverter()) + "°C" )
+                self.maxTemp.text = ("Max: " + String(weather.main.temp_max.kelvinToCelsiusConverter()) + "°C" )
+                UserDefaults.standard.set("\(weather.name ?? "")", forKey: "SelectedCity")
 
              }
          }
     }
+    
+    //  Allows the updateLocation function to call on the loadData function after saving
     
     @objc func updateLocationButton() {
         let alertController = UIAlertController(title: "Update City", message: "", preferredStyle: .alert)
@@ -157,6 +164,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
          alertController.addAction(cancel)
 
          self.present(alertController, animated: true, completion: nil)
+    }
+    @objc func pushForecastVC() {
+        self.navigationController?.pushViewController(ForecastVC(), animated: true)
     }
 }
 
