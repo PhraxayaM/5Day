@@ -33,14 +33,16 @@ class ForecastCell: UICollectionViewCell, CellSelfConstruct, UICollectionViewDel
 
     override init(frame: CGRect) {
          super.init(frame: frame)
-        contentView.backgroundColor = .purple
+//        contentView.backgroundColor = .white
+        
+        
          contentView.layer.cornerRadius = 10
          contentView.layer.masksToBounds = true
         
         collectionView = UICollectionView(frame: CGRect(x: 100, y: 0, width: (frame.width - 112), height: frame.height), collectionViewLayout: createCompositionalLayout())
         collectionView.register(HourlyCell.self, forCellWithReuseIdentifier: HourlyCell.reuseIdentifier)
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .purple
+        collectionView.backgroundColor = .gray
         collectionView.delegate = self
         collectionView.dataSource = self
         addSubview(collectionView)

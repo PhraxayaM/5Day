@@ -65,7 +65,7 @@ class ForecastVC: UIViewController, UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ForecastCell.reuseIdentifier, for: indexPath) as! ForecastCell
         cell.configure(with: forecastData[indexPath.row])
-        cell.backgroundColor = .red
+//        cell.backgroundColor = .red
         return cell
     }
     

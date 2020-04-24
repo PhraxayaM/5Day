@@ -24,6 +24,7 @@
 		CDF54E5D244EA81F00DC0A69 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF54E5C244EA81F00DC0A69 /* Forecast.swift */; };
 		CDF54E5F244EA85000DC0A69 /* HourlyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF54E5E244EA85000DC0A69 /* HourlyCell.swift */; };
 		CDF54E61244F5BA600DC0A69 /* IntIncrementDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF54E60244F5BA500DC0A69 /* IntIncrementDays.swift */; };
+		CDF54E652451525300DC0A69 /* GradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF54E642451525300DC0A69 /* GradientBackground.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		CDF54E5C244EA81F00DC0A69 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		CDF54E5E244EA85000DC0A69 /* HourlyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCell.swift; sourceTree = "<group>"; };
 		CDF54E60244F5BA500DC0A69 /* IntIncrementDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntIncrementDays.swift; sourceTree = "<group>"; };
+		CDF54E642451525300DC0A69 /* GradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackground.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				CD46AD1A2448B7DB007993CF /* Constraints */,
+				CDF54E642451525300DC0A69 /* GradientBackground.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD46AD1C2448B7FC007993CF /* HomeViewConstraints.swift in Sources */,
+				CDF54E652451525300DC0A69 /* GradientBackground.swift in Sources */,
 				CD46AD0E2447A5E5007993CF /* NMProtocol.swift in Sources */,
 				CDF54E59244EA78100DC0A69 /* ForecastCell.swift in Sources */,
 				CD46ACFD24479F8F007993CF /* ViewController.swift in Sources */,

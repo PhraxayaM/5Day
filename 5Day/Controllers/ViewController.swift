@@ -16,7 +16,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         // Do any additional setup after loading the view.
         var city = "Sacramento"
         networkManager.getWeather(city: city) { (weather) in
