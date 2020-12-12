@@ -51,11 +51,26 @@ class ForecastVC: UIViewController, UICollectionViewDataSource, UICollectionView
     }
     
     func setupViews() {
-        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        var firstC = UIColor.rgb(red: 74, green: 115, blue: 184)
+         var secondC = UIColor.rgb(red: 120, green: 15, blue: 134)
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        addBackgroundGradient(firstColor: firstC, secondColor: secondC)
     }
+    
+    private func addBackgroundGradient(firstColor: UIColor, secondColor: UIColor) {
+        let collectionViewBackgroundView = UIView()
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame.size = view.frame.size
+        // Start and end for left to right gradient
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+        gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
+        collectionView.backgroundView = collectionViewBackgroundView
+        collectionView.backgroundView?.layer.addSublayer(gradientLayer)
+      }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return forecastData.count

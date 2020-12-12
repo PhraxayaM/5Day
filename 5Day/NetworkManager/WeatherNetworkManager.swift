@@ -7,10 +7,19 @@
 //
 
 import Foundation
+import CoreLocation
 
+protocol WeatherManagerDel {
+    func updateWeather(weather: WeatherModel)
+}
 class WeatherNetworkManager: NMProtocol {
+    
+    var delegate: WeatherManagerDel?
+
     func getWeather(city: String, completion: @escaping (WeatherModel) -> ()) {
-        let API_URL = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(NetworkProperties.API_KEY)"
+        let reformatCityName = city.replacingOccurrences(of: " ", with: "+")
+
+        let API_URL = "https://api.openweathermap.org/data/2.5/weather?q=\(reformatCityName)&appid=\(NetworkProperties.API_KEY)"
 
         guard let url = URL(string: API_URL) else {
             fatalError()
@@ -27,6 +36,27 @@ class WeatherNetworkManager: NMProtocol {
             }
 
         }.resume()
+    }
+    
+    func getLocation(lat: CLLocationDegrees, lon: CLLocationDegrees, completion: @escaping (WeatherModel) -> ()) {
+        let API_URL = "https://api.openweathermap.org/data/2.5/weather?appid=\(NetworkProperties.API_KEY)&units=metric&lat=\(lat)&lon=\(lon)"
+        guard let url = URL(string: API_URL) else {
+                 fatalError()
+             }
+        let urlRequest = URLRequest(url: url)
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+        guard let data = data else { return }
+
+            do {
+                let currentWeather = try JSONDecoder().decode(WeatherModel.self, from: data)
+                self.delegate?.updateWeather(weather: currentWeather)
+                completion(currentWeather)
+            } catch {
+                 print(error)
+            }
+
+        }.resume()
+        
     }
     func getForecast(city: String, completion: @escaping ([ForecastTemperature]) -> ()) {
             let formattedCity = city.replacingOccurrences(of: " ", with: "+")

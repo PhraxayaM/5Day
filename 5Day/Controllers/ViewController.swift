@@ -9,15 +9,13 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController {
 
     
     let networkManager = WeatherNetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        // Do any additional setup after loading the view.
         var city = "Sacramento"
         networkManager.getWeather(city: city) { (weather) in
             print("temp test", weather.main.temp, "hey: \(weather)")
@@ -26,22 +24,45 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         setupView()
-                 
+        setupPermissionRequest()
+        networkManager.delegate = self
+        setupViewstack()
 
 }
    
     func setupView() {
-        view.addSubview(currentTemperatureLabel)
-        view.addSubview(currentTime)
+//        view.addSubview(currentTemperatureLabel)
+//        view.addSubview(currentTime)
         view.addSubview(currentLocation)
-        view.addSubview(tempDescription)
-        view.addSubview(tempSymbol)
-        view.addSubview(maxTemp)
-        view.addSubview(minTemp)
+//        view.addSubview(tempDescription)
+//        view.addSubview(tempSymbol)
+//        view.addSubview(maxTemp)
+//        view.addSubview(minTemp)
         setupConstraints()
         setupNavbar()
         
+        var firstC = UIColor.rgb(red: 74, green: 115, blue: 184)
+         var secondC = UIColor.rgb(red: 120, green: 15, blue: 134)
+        view.addGradientBackground(firstColor: firstC, secondColor: secondC)
+    }
+    func setupViewstack() {
         
+        let stackView = UIStackView(arrangedSubviews: [ currentTemperatureLabel, currentTime, tempDescription, tempSymbol, minTemp, maxTemp])
+        stackView.distribution = .fillProportionally
+        stackView.axis = .vertical
+        stackView.spacing = 30
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        currentTemperatureLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        stackView.anchor(top: currentLocation.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 90, paddingLeft: 40, paddingBottom: 20, paddingRight: 40, width: 0, height: 400)
+        
+    }
+    func setupPermissionRequest(){
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        locationManager.requestLocation()
     }
     func setupNavbar() {
         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "plus.circle"), style: .done, target: self, action: #selector(updateLocationButton)),
@@ -53,8 +74,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Location"
         label.textAlignment = .left
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 38, weight: .heavy)
+        label.numberOfLines = 3
+        label.font = UIFont.systemFont(ofSize: 40, weight: .heavy)
         return label
     }()
     
@@ -72,7 +93,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "°C"
-        label.textColor = .label
+        label.textColor = .white
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 60, weight: .heavy)
         return label
@@ -82,7 +103,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "..."
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.textColor = .label
         label.font = UIFont.systemFont(ofSize: 14, weight: .light)
@@ -133,9 +153,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
              DispatchQueue.main.async {
                  self.tempDescription.text = weather.weather[0].description
                 self.currentLocation.text = "\(weather.name ?? "") , \(weather.sys.country ?? "")"
-                self.currentTemperatureLabel.text = (String(weather.main.temp.kelvinToCelsiusConverter()) + "°C")
-                self.minTemp.text = ("Min: " + String(weather.main.temp_min.kelvinToCelsiusConverter()) + "°C" )
-                self.maxTemp.text = ("Max: " + String(weather.main.temp_max.kelvinToCelsiusConverter()) + "°C" )
+                self.currentTemperatureLabel.text = (String(weather.main.temp.kelvinToFahrenheitConverter()) + "°")
+                self.minTemp.text = ("Min: " + String(weather.main.temp_min.kelvinToFahrenheitConverter()) + "°" )
+                self.maxTemp.text = ("Max: " + String(weather.main.temp_max.kelvinToFahrenheitConverter()) + "°" )
                 UserDefaults.standard.set("\(weather.name ?? "")", forKey: "SelectedCity")
 
              }
@@ -170,3 +190,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
 }
 
+extension ViewController: CLLocationManagerDelegate, WeatherManagerDel {
+    func updateWeather(weather: WeatherModel) {
+        print("weather name: weather.name")
+        DispatchQueue.main.async {
+            self.currentLocation.text = weather.name
+            self.currentTemperatureLabel.text = (String(weather.main.temp.FahrenheitConverter()) + "°")
+            self.minTemp.text = ("Min: " + String(weather.main.temp_min.FahrenheitConverter()) + "°" )
+            self.maxTemp.text = ("Max: " + String(weather.main.temp_max.FahrenheitConverter()) + "°" )
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("got location data")
+        
+        if let location = locations.last {
+            let lat = location.coordinate.latitude
+            let long = location.coordinate.longitude
+            print(lat, long)
+            networkManager.getLocation(lat: lat, lon: long) { (weather) in
+                print(weather)
+            }
+            }
+        
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+}

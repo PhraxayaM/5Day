@@ -17,6 +17,8 @@
 		CD46AD152447E550007993CF /* NMProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46AD142447E550007993CF /* NMProperties.swift */; };
 		CD46AD172447E70E007993CF /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46AD162447E70E007993CF /* Weather.swift */; };
 		CD46AD1C2448B7FC007993CF /* HomeViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46AD1B2448B7FC007993CF /* HomeViewConstraints.swift */; };
+		CD57D2A72582EB0900061DFB /* ColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD57D2A62582EB0900061DFB /* ColorExt.swift */; };
+		CD57D2B12583794F00061DFB /* AnchorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD57D2B02583794E00061DFB /* AnchorExt.swift */; };
 		CDF54E52244E8EA600DC0A69 /* KelvinToCelsiusConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF54E51244E8EA600DC0A69 /* KelvinToCelsiusConverter.swift */; };
 		CDF54E56244EA6BB00DC0A69 /* ForecastVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF54E55244EA6BB00DC0A69 /* ForecastVC.swift */; };
 		CDF54E59244EA78100DC0A69 /* ForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF54E58244EA78100DC0A69 /* ForecastCell.swift */; };
@@ -25,6 +27,7 @@
 		CDF54E5F244EA85000DC0A69 /* HourlyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF54E5E244EA85000DC0A69 /* HourlyCell.swift */; };
 		CDF54E61244F5BA600DC0A69 /* IntIncrementDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF54E60244F5BA500DC0A69 /* IntIncrementDays.swift */; };
 		CDF54E652451525300DC0A69 /* GradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF54E642451525300DC0A69 /* GradientBackground.swift */; };
+		CDF54E6724536F4500DC0A69 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF54E6624536F4500DC0A69 /* ImageViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,8 @@
 		CD46AD142447E550007993CF /* NMProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMProperties.swift; sourceTree = "<group>"; };
 		CD46AD162447E70E007993CF /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		CD46AD1B2448B7FC007993CF /* HomeViewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewConstraints.swift; sourceTree = "<group>"; };
+		CD57D2A62582EB0900061DFB /* ColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExt.swift; sourceTree = "<group>"; };
+		CD57D2B02583794E00061DFB /* AnchorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorExt.swift; sourceTree = "<group>"; };
 		CDF54E51244E8EA600DC0A69 /* KelvinToCelsiusConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KelvinToCelsiusConverter.swift; sourceTree = "<group>"; };
 		CDF54E55244EA6BB00DC0A69 /* ForecastVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastVC.swift; sourceTree = "<group>"; };
 		CDF54E58244EA78100DC0A69 /* ForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCell.swift; sourceTree = "<group>"; };
@@ -48,6 +53,7 @@
 		CDF54E5E244EA85000DC0A69 /* HourlyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCell.swift; sourceTree = "<group>"; };
 		CDF54E60244F5BA500DC0A69 /* IntIncrementDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntIncrementDays.swift; sourceTree = "<group>"; };
 		CDF54E642451525300DC0A69 /* GradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackground.swift; sourceTree = "<group>"; };
+		CDF54E6624536F4500DC0A69 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,9 @@
 			children = (
 				CD46AD1A2448B7DB007993CF /* Constraints */,
 				CDF54E642451525300DC0A69 /* GradientBackground.swift */,
+				CDF54E6624536F4500DC0A69 /* ImageViewExtension.swift */,
+				CD57D2A62582EB0900061DFB /* ColorExt.swift */,
+				CD57D2B02583794E00061DFB /* AnchorExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -222,8 +231,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD46AD1C2448B7FC007993CF /* HomeViewConstraints.swift in Sources */,
+				CD57D2A72582EB0900061DFB /* ColorExt.swift in Sources */,
 				CDF54E652451525300DC0A69 /* GradientBackground.swift in Sources */,
 				CD46AD0E2447A5E5007993CF /* NMProtocol.swift in Sources */,
+				CD57D2B12583794F00061DFB /* AnchorExt.swift in Sources */,
 				CDF54E59244EA78100DC0A69 /* ForecastCell.swift in Sources */,
 				CD46ACFD24479F8F007993CF /* ViewController.swift in Sources */,
 				CDF54E5F244EA85000DC0A69 /* HourlyCell.swift in Sources */,
@@ -234,6 +245,7 @@
 				CD46ACFB24479F8F007993CF /* SceneDelegate.swift in Sources */,
 				CD46AD102447A6F7007993CF /* WeatherNetworkManager.swift in Sources */,
 				CDF54E56244EA6BB00DC0A69 /* ForecastVC.swift in Sources */,
+				CDF54E6724536F4500DC0A69 /* ImageViewExtension.swift in Sources */,
 				CD46AD152447E550007993CF /* NMProperties.swift in Sources */,
 				CD46AD172447E70E007993CF /* Weather.swift in Sources */,
 				CDF54E61244F5BA600DC0A69 /* IntIncrementDays.swift in Sources */,

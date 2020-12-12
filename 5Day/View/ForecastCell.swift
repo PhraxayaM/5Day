@@ -15,7 +15,7 @@ class ForecastCell: UICollectionViewCell, CellSelfConstruct, UICollectionViewDel
     let weekdaylabel: UILabel = {
        let label = UILabel()
         label.text = "Monday"
-        label.textColor = .label
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -42,7 +42,9 @@ class ForecastCell: UICollectionViewCell, CellSelfConstruct, UICollectionViewDel
         collectionView = UICollectionView(frame: CGRect(x: 100, y: 0, width: (frame.width - 112), height: frame.height), collectionViewLayout: createCompositionalLayout())
         collectionView.register(HourlyCell.self, forCellWithReuseIdentifier: HourlyCell.reuseIdentifier)
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .gray
+//        collectionView.backgroundColor = #colorLiteral(red: 0.9443109632, green: 1, blue: 0.9847763181, alpha: 1)
+        collectionView.backgroundView = nil
+        collectionView.backgroundColor = UIColor.clear
         collectionView.delegate = self
         collectionView.dataSource = self
         addSubview(collectionView)
@@ -53,7 +55,22 @@ class ForecastCell: UICollectionViewCell, CellSelfConstruct, UICollectionViewDel
     func setupViews() {
         addSubview(weekdaylabel)
         addSubview(tempSymbol)
+//        var firstC = UIColor.rgb(red: 74, green: 115, blue: 184)
+//         var secondC = UIColor.rgb(red: 120, green: 15, blue: 134)
+//        addGradientBackground(firstColor: firstC, secondColor: secondC)
     }
+    
+    private func addBackgroundGradient(firstColor: UIColor, secondColor: UIColor) {
+        let collectionViewBackgroundView = UIView()
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame.size = frame.size
+        // Start and end for left to right gradient
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+        gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
+        collectionView.backgroundView = collectionViewBackgroundView
+        collectionView.backgroundView?.layer.addSublayer(gradientLayer)
+      }
     
     func layoutViews() {
         weekdaylabel.topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
@@ -62,6 +79,7 @@ class ForecastCell: UICollectionViewCell, CellSelfConstruct, UICollectionViewDel
         weekdaylabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

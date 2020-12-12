@@ -20,4 +20,23 @@ extension Float {
         let celValue = kelValue - constantVal
         return celValue.truncate(places: 1)
     }
+    func kelvinToFahrenheitConverter() -> Float {
+        let constantVal : Float = 273
+        let kelValue = self
+        print("kel", kelValue)
+        let sum = (kelValue - constantVal)
+        let celValue = sum + 32
+        
+        return celValue.truncate(places: 1)
+    }
+    func FahrenheitConverter() -> Float {
+        let constantVal : Float = 273
+        let kelValue = self
+        print("kel", kelValue)
+        let sum = 1.8 * kelValue
+        let celValue = sum + 32
+        print("celvalue", celValue)
+        
+        return celValue.truncate(places: 1)
+    }
 }
