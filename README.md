@@ -1,3 +1,5 @@
 # 5Day
-![alt text](https://github.com/PhraxayaM/5Day/blob/master/Images/scr1.png)
-![alt text](https://github.com/PhraxayaM/5Day/blob/master/Images/scr1.png)
+
+<img src="Images/scr1.png" width="100" height="100">
+
+![alt text](https://github.com/PhraxayaM/5Day/blob/master/Images/scr2.png)
